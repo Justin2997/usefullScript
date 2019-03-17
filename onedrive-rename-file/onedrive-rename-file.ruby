@@ -1,10 +1,15 @@
 #!/usr/bin/ruby
 
-path = ARGV[0]
+pathOrigine = ARGV[0]
+pathTransfert = ARGV[1]
+theEnd = false
 
-# Get file
-files = Dir.entries(path).select {|f| !File.directory? f}
-directories = Dir.entries(path).select {|d| File.directory? d}
-
-puts files
-puts directories
+while !theEnd
+    files = Dir.entries(pathOrigine).select {|f| !File.directory? f}
+    files.each do |file|
+        if file =~ /[^a-zA-Z0-9\s]/
+            puts file
+        end
+    end  
+    theEnd = true
+end
